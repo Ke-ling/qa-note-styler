@@ -1,0 +1,9 @@
+{
+	"id": "qa-note-styler",
+	"name": "QA Note Styler",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Quickly insert and style Q&A notes.",
+	"author": "Dxy",
+	"isDesktopOnly": false
+}
