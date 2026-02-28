@@ -1,8 +1,130 @@
-/*
+/* ==============================================
+   暗黑模式专属 浅蓝色QA样式
+   适配Obsidian所有暗黑主题，柔和护眼不刺眼
+   ============================================== */
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* ------------------------------
+   方案1：原生Callout风格（推荐）
+   完全兼容Obsidian原生语法，无需写HTML
+   ------------------------------ */
+/* 问题块 - 主浅蓝色 */
+.callout[data-callout="qa-q"] {
+	/* 核心配色：暗黑模式柔和浅蓝 */
+	--callout-color: 138, 180, 248;
+	--callout-icon: help-circle;
+	/* 暗黑适配背景：半透明浅蓝，不突兀 */
+	background-color: rgba(138, 180, 248, 0.08);
+	border-left: 4px solid rgb(var(--callout-color));
+	border-radius: 6px;
+	margin: 1.2rem 0;
+	transition: background 0.2s ease;
+}
 
-If your plugin does not need CSS, delete this file.
+/* 问题块hover交互 */
+.callout[data-callout="qa-q"]:hover {
+	background-color: rgba(138, 180, 248, 0.12);
+}
 
-*/
+/* 问题块标题样式 */
+.callout[data-callout="qa-q"] .callout-title {
+	color: rgb(138, 180, 248);
+	font-weight: 600;
+	font-size: 1.05em;
+}
+
+/* 答案块 - 浅青蓝色（和问题区分，同色系不跳脱） */
+.callout[data-callout="qa-a"] {
+	--callout-color: 125, 211, 252;
+	--callout-icon: check-circle-2;
+	background-color: rgba(125, 211, 252, 0.06);
+	border-left: 4px solid rgb(var(--callout-color));
+	border-radius: 6px;
+	margin: -0.5rem 0 1.5rem 0.8rem;
+	transition: background 0.2s ease;
+}
+
+/* 答案块hover交互 */
+.callout[data-callout="qa-a"]:hover {
+	background-color: rgba(125, 211, 252, 0.1);
+}
+
+/* 答案块标题样式 */
+.callout[data-callout="qa-a"] .callout-title {
+	color: rgb(125, 211, 252);
+	font-weight: 500;
+}
+
+/* 暗黑模式下自动适配文字颜色 */
+.callout[data-callout="qa-q"] .callout-content,
+.callout[data-callout="qa-a"] .callout-content {
+	color: var(--text-normal);
+	line-height: 1.6;
+}
+
+/* ------------------------------
+   方案2：自定义HTML块风格
+   更精致的Q/A图标，视觉层次更强
+   ------------------------------ */
+.qa-block {
+	margin: 1.5rem 0;
+	padding: 0;
+	border-radius: 8px;
+	background: var(--background-secondary);
+	border: 1px solid rgba(138, 180, 248, 0.2);
+	overflow: hidden;
+}
+
+/* 问题区域 */
+.qa-question {
+	font-weight: 600;
+	font-size: 1.1em;
+	color: #8ab4f8;
+	padding: 1rem 1.2rem;
+	background: rgba(138, 180, 248, 0.08);
+	border-bottom: 1px solid rgba(138, 180, 248, 0.15);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* Q图标 */
+.qa-question::before {
+	content: "Q";
+	background: linear-gradient(135deg, #8ab4f8, #7dd3fc);
+	color: var(--background-primary);
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8em;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+
+/* 答案区域 */
+.qa-answer {
+	color: var(--text-normal);
+	padding: 1rem 1.2rem 1rem 3rem;
+	line-height: 1.6;
+	position: relative;
+}
+
+/* A图标 */
+.qa-answer::before {
+	content: "A";
+	background: linear-gradient(135deg, #7dd3fc, #94cfff);
+	color: var(--background-primary);
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8em;
+	font-weight: 700;
+	position: absolute;
+	left: 1.2rem;
+	top: 1.1rem;
+}
